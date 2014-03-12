@@ -5,14 +5,14 @@
   </HEAD>
   <BODY>
   	<h2>Using the ExpressionBuilder and the Calculable interface</h2>
-  	<b>Evaluate an expression</b>
+  	<b>Evaluate an condition</b>
   	<pre>
   		Calculable calc = new ExpressionBuilder("3 * sin(y) - 2 / (x - 2)").withVariable("x", varX).withVariable("y", varY).build()
   		double result1=calc.calculate();
   	</pre>
   	you can also change variables values after building by invoking <code>Calculable.setVariable(String varName,double value)</code>,
   	but one has to make sure that the variable names are passed into the ExpressionBuilder using at
-  	least ExpressionBuilder.withVariableNames(String...). If variables are used in the expression without setting at least their names,
+  	least ExpressionBuilder.withVariableNames(String...). If variables are used in the condition without setting at least their names,
   	an UnparseableExpressionException will be thrown.
   	<pre>
   		Calculable calc = new ExpressionBuilder("x * y - 2").withVariableNames("x","y").build();

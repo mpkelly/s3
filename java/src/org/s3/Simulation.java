@@ -4,6 +4,7 @@ package org.s3;
 import org.s3.api.SimulationBuilder;
 import org.s3.api.VariableBuilder;
 import org.s3.expression.Expression;
+import org.s3.variable.Condition;
 import org.s3.variable.Constant;
 import org.s3.variable.Variable;
 
@@ -25,8 +26,12 @@ public class Simulation implements SimulationBuilder {
         return this;
     }
 
-    public Expression expression(String expression) {
+    public Expression makeExpression(String expression) {
         return new Expression(variables, expression);
+    }
+
+    public Condition makeCondition(String expression) {
+        return new Condition(makeExpression(expression));
     }
 
     @Override
@@ -44,7 +49,7 @@ public class Simulation implements SimulationBuilder {
     public Simulation sample(String... expressions) {
         this.sampleExpressions =  new Expression[expressions.length];
         for (int i = 0; i < expressions.length; i++) {
-            sampleExpressions[i] = expression(expressions[i]);
+            sampleExpressions[i] = makeExpression(expressions[i]);
         }
         return this;
     }

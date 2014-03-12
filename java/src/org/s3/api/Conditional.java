@@ -1,29 +1,22 @@
 package org.s3.api;
 
 import org.s3.Simulation;
-import org.s3.expression.Expression;
+import org.s3.variable.Choices;
 
-import java.util.Map;
-
-public class Conditional implements ConditionalBuilder<SimulationAndChoiceBuilder> {
+public class Conditional implements ConditionalBuilder<ChoiceBuilder> {
 
     private final String name;
-    private final Expression expression;
-    private final ChoiceBuilder choice;
     private final Simulation simulation;
-    private final Map<Expression, Expression> choices;
+    private final Choices choices;
 
-    public Conditional(String name, Expression expression, ChoiceBuilder choice, Simulation simulation, Map<Expression, Expression> choices) {
+    public Conditional(String name, Simulation simulation) {
         this.name = name;
-        this.expression = expression;
-        this.choice = choice;
         this.simulation = simulation;
-        this.choices = choices;
+        this.choices = new Choices();
     }
 
     @Override
-    public SimulationAndChoiceBuilder when(String condition) {
-        choices.put(simulation.expression(condition), expression);
-        return new SimulationAndChoice(name, choice, choices, simulation);
+    public ChoiceBuilder when(String condition) {
+        return new Choice(name, simulation, simulation.makeCondition(condition), choices);
     }
 }

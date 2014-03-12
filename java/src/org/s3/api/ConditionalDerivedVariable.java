@@ -5,7 +5,7 @@ import org.s3.expression.Expression;
 import org.s3.variable.DerivedVariable;
 import org.s3.variable.Variable;
 
-public class ConditionalDerivedVariable extends org.s3.api.ConditionalVariable {
+public class ConditionalDerivedVariable extends ConditionalVariable {
 
     private final String name;
     private final Expression expression;

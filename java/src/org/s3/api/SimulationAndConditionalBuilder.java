@@ -1,5 +1,5 @@
 package org.s3.api;
 
-public interface SimulationAndConditionalBuilder extends SimulationBuilder, ConditionalBuilder<SimulationBuilder> {
+public interface SimulationAndConditionalBuilder<T> extends SimulationBuilder, ConditionalBuilder<T> {
 
 }

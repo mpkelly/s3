@@ -6,6 +6,7 @@ import org.s3.SimulationResult;
 import org.s3.SimulationRunner;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SimulationTest {
 
@@ -34,8 +35,8 @@ public class SimulationTest {
             .withVariable("r").zipf(10, 0.1)
             .withVariable("s").expression("s + 1")
             .withVariable("t").choice()
-                .select("1 + 2").when("5 > 5")
-                .select("2 + 2").when("2 == 2")
+                .when("5 > 5").then("1 + 2")
+                .when("2 == 2").then("2 + 2")
             .withConstant("u", 100)
             .sample("a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t", "u");
 
@@ -56,12 +57,24 @@ public class SimulationTest {
     public void testVariableChoice() throws Exception {
         Simulation simulation = new Simulation()
             .withVariable("x").choice()
-                .select("x + 1").when("x == 0")
-                .select("x + 2").when("x == 1")
-                .select("x + 3").when("x == 3")
+                .when("x == 0").then("x + 1")
+                .when("x == 1").then("x + 2")
+                .when("x == 3").then("x + 3")
             .sample("x");
         final SimulationResult result = new SimulationRunner().run(simulation, 3, 1);
 
         assertEquals("variable choice", 6.0, result.last()[0]);
+    }
+
+    @Test
+    public void multipleSamples() throws Exception {
+        Simulation simulation = new Simulation()
+                .withVariable("x").expression("1")
+                .withConstant("y", 2)
+                .withVariable("z").expression("3")
+                .sample("x", "y", "z");
+        final SimulationResult result = new SimulationRunner().run(simulation, 1, 1);
+
+        assertArrayEquals("multiple samples", new double[]{1.0, 2.0, 3.0}, result.last(), 0.0);
     }
 }

@@ -5,7 +5,7 @@ import org.s3.distribution.Distribution;
 import org.s3.variable.StochasticVariable;
 import org.s3.variable.Variable;
 
-public class ConditionalDistributionVariable extends org.s3.api.ConditionalVariable {
+public class ConditionalDistributionVariable extends ConditionalVariable {
 
     private final String name;
     private final Distribution distribution;
@@ -17,7 +17,7 @@ public class ConditionalDistributionVariable extends org.s3.api.ConditionalVaria
     }
 
     @Override
-    Variable createVariable() {
+    protected Variable createVariable() {
         return new StochasticVariable(name, distribution);
     }
 }

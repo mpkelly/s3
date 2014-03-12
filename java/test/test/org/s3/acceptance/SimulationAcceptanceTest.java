@@ -45,7 +45,7 @@ public class SimulationAcceptanceTest {
             .withVariable("x").uniform(1,6)
             .sample("x");
 
-        Expression untilAnEven = simulator.expression("x % 2 == 0");
+        Expression untilAnEven = simulator.makeExpression("x % 2 == 0");
         SimulationResult simulationResult = new SimulationRunner().run(simulator, untilAnEven, 10000);
 
         double sampleMean = simulationResult.sampleMean();

@@ -53,27 +53,27 @@ public class VariableTest {
 
     @Test()
     public void testChoiceVariable() throws Exception {
-        LinkedHashMap<Expression, Expression> choices = new LinkedHashMap<Expression, Expression>() {{
-            put(new Expression("2 == 1"), new Expression("5"));
-            put(new Expression("2 == 2"), new Expression("10"));
+        Choices choices = new Choices() {{
+            add(new Condition(new Expression("2 == 1")), new Expression("5"));
+            add(new Condition(new Expression("2 == 2")), new Expression("10"));
         }};
 
         ChoiceVariable x = new ChoiceVariable("x", choices);
 
         assertEquals(x.evaluate(), 10.0);
 
-        choices = new LinkedHashMap<Expression, Expression>() {{
-            put(new Expression("2 == 2"), new Expression("5"));
-            put(new Expression("2 == 1"), new Expression("10"));
+        choices = new Choices() {{
+            add(new Condition(new Expression("2 == 2")), new Expression("5"));
+            add(new Condition(new Expression("2 == 2")), new Expression("10"));
         }};
 
         x = new ChoiceVariable("x", choices);
 
         assertEquals(x.evaluate(), 5.0);
 
-        choices = new LinkedHashMap<Expression, Expression>() {{
-            put(new Expression("2 == 1"), new Expression("5"));
-            put(new Expression("2 == 1"), new Expression("10"));
+        choices = new Choices() {{
+            add(new Condition(new Expression("2 == 1")), new Expression("5"));
+            add(new Condition(new Expression("2 == 1")), new Expression("10"));
         }};
 
         x = new ChoiceVariable("x", choices);

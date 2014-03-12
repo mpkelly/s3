@@ -1,18 +1,17 @@
 package org.s3.variable;
 
 import org.s3.expression.BadExpressionException;
-import org.s3.expression.Expression;
 
-import java.util.Map;
+import static org.s3.variable.Choices.*;
 
 public class ChoiceVariable implements Variable<BadExpressionException> {
 
-    private final Map<Expression, Expression> choices;
+    private final Choices choices;
     private final String name;
 
     private double currentValue;
 
-    public ChoiceVariable(String name, Map<Expression, Expression> choices) {
+    public ChoiceVariable(String name, Choices choices) {
         this.name = name;
         this.choices = choices;
     }
@@ -24,9 +23,9 @@ public class ChoiceVariable implements Variable<BadExpressionException> {
 
     @Override
     public double evaluate() throws BadExpressionException {
-        for(Expression condition: choices.keySet()) {
-            if (condition.toBoolean()) {
-                currentValue = choices.get(condition).toDouble();
+        for(Choice choice : choices) {
+            if (choice.condition.isMet()) {
+                currentValue = choice.expression.toDouble();
                 break;
             }
         }

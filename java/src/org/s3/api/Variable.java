@@ -14,103 +14,102 @@ public class Variable implements VariableBuilder {
     }
 
     @Override
-    public SimulationAndConditionalBuilder beta(double alpha, double beta) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> beta(double alpha, double beta) {
         return new ConditionalDistributionVariable(name, simulation, new BetaDistribution(alpha, beta));
     }
 
     @Override
-    public SimulationAndConditionalBuilder binomial(int trials, double successProbability) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> binomial(int trials, double successProbability) {
         return new ConditionalDistributionVariable(name, simulation, new BinomialDistribution(trials, successProbability));
     }
 
     @Override
-    public SimulationAndConditionalBuilder cauchy(double median, double scale) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> cauchy(double median, double scale) {
         return new ConditionalDistributionVariable(name, simulation, new CauchyDistribution(median, scale));
     }
 
     @Override
-    public SimulationAndConditionalBuilder chiSquared(double degreesOfFreedom) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> chiSquared(double degreesOfFreedom) {
         return new ConditionalDistributionVariable(name, simulation, new ChiSquaredDistribution(degreesOfFreedom));
     }
 
     @Override
-    public SimulationAndConditionalBuilder exponential(double mean) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> exponential(double mean) {
         return new ConditionalDistributionVariable(name, simulation, new ExponentialDistribution(mean));
     }
 
     @Override
-    public SimulationAndConditionalBuilder f(double numeratorDegreesOfFreedom, double nominatorDegreesOfFreedom) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> f(double numeratorDegreesOfFreedom, double nominatorDegreesOfFreedom) {
         return new ConditionalDistributionVariable(name, simulation, new FDistribution(numeratorDegreesOfFreedom, nominatorDegreesOfFreedom));
     }
 
     @Override
-    public SimulationAndConditionalBuilder gamma(double shape, double scale) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> gamma(double shape, double scale) {
         return new ConditionalDistributionVariable(name, simulation, new GammaDistribution(shape, scale));
     }
 
     @Override
-    public SimulationAndConditionalBuilder hyperGeometric(int populationSize, int numberOfSuccesses, int sampleSize) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> hyperGeometric(int populationSize, int numberOfSuccesses, int sampleSize) {
         return new ConditionalDistributionVariable(name, simulation, new HypergeometricDistribution(populationSize, numberOfSuccesses, sampleSize));
     }
 
     @Override
-    public SimulationAndConditionalBuilder logNormal(double scale, double shape) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> logNormal(double scale, double shape) {
         return new ConditionalDistributionVariable(name, simulation, new LogNormalDistribution(scale, shape));
     }
 
     @Override
-    public SimulationAndConditionalBuilder normal(double mean, double standardDeviation) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> normal(double mean, double standardDeviation) {
         return new ConditionalDistributionVariable(name, simulation, new NormalDistribution(mean, standardDeviation));
     }
 
     @Override
-    public SimulationAndConditionalBuilder pascal(int numberOfFailures, double probabilityOfSuccess) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> pascal(int numberOfFailures, double probabilityOfSuccess) {
         return new ConditionalDistributionVariable(name, simulation, new PascalDistribution(numberOfFailures, probabilityOfSuccess));
     }
 
     @Override
-    public SimulationAndConditionalBuilder poisson(double mean) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> poisson(double mean) {
         return new ConditionalDistributionVariable(name, simulation, new PoissonDistribution(mean));
     }
 
     @Override
-    public SimulationAndConditionalBuilder t(double degreesOfFreedom) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> t(double degreesOfFreedom) {
         return new ConditionalDistributionVariable(name, simulation, new TDistribution(degreesOfFreedom));
     }
 
     @Override
-    public SimulationAndConditionalBuilder triangular(double lower, double mode, double upper) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> triangular(double lower, double mode, double upper) {
         return new ConditionalDistributionVariable(name, simulation, new TriangularDistribution(lower, mode, upper));
     }
 
     @Override
-    public SimulationAndConditionalBuilder uniform(int lower, int upper) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> uniform(int lower, int upper) {
         return new ConditionalDistributionVariable(name, simulation, new UniformIntegerDistribution(lower, upper));
     }
 
     @Override
-    public SimulationAndConditionalBuilder uniform(double lower, double upper) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> uniform(double lower, double upper) {
         return new ConditionalDistributionVariable(name, simulation, new UniformRealDistribution(lower, upper));
     }
 
     @Override
-    public SimulationAndConditionalBuilder weibull(double alpha, double beta) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> weibull(double alpha, double beta) {
         return new ConditionalDistributionVariable(name, simulation, new WeibullDistribution(alpha, beta));
     }
 
     @Override
-    public SimulationAndConditionalBuilder zipf(int numberOfElements, double exponent) {
+    public SimulationAndConditionalBuilder<SimulationBuilder> zipf(int numberOfElements, double exponent) {
         return new ConditionalDistributionVariable(name, simulation, new ZipfDistribution(numberOfElements, exponent));
     }
 
     @Override
-    public SimulationAndConditionalBuilder expression(String expression) {
-        return new ConditionalDerivedVariable(name, simulation, simulation.expression(expression));
+    public SimulationAndConditionalBuilder<SimulationBuilder> expression(String expression) {
+        return new ConditionalDerivedVariable(name, simulation, simulation.makeExpression(expression));
     }
 
     @Override
-    public ChoiceBuilder choice() {
-        return new Choice(name, simulation);
+    public ConditionalBuilder<ChoiceBuilder> choice() {
+        return new Conditional(name, simulation);
     }
-
 }

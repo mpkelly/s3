@@ -6,14 +6,14 @@ public class RandomWalkInThreeDimensions {
         Simulation simulation = new Simulation()
             .withVariable("p").uniform(1, 6)
             .withVariable("x").choice()
-                .select("x - 1").when("p == 1")
-                .select("x + 1").when("p == 2")
+                .when("p == 1").then("x - 1")
+                .when("p == 2").then("x + 1")
             .withVariable("y").choice()
-                .select("y - 1").when("p == 3")
-                .select("y + 1").when("p == 4")
+                .when("p == 3").then("y - 1")
+                .when("p == 4").then("y + 1")
             .withVariable("z").choice()
-                .select("z - 1").when("p == 5")
-                .select("z + 1").when("p == 6")
+                .when("p == 5").then("z - 1")
+                .when("p == 6").then("z + 1")
             .sample("x", "y", "z");
 
         final SimulationResult result = new SimulationRunner().run(simulation, 50, 1);
