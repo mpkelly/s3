@@ -105,7 +105,7 @@ public class Variable implements VariableBuilder {
 
     @Override
     public SimulationAndConditionalBuilder<SimulationBuilder> expression(String expression) {
-        return new ConditionalDerivedVariable(name, simulation, simulation.makeExpression(expression));
+        return new ConditionalExpressedVariable(name, simulation, simulation.makeExpression(expression));
     }
 
     @Override
