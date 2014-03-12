@@ -15,7 +15,7 @@ public class VariableTest {
     public void testSelfReferencingVariable() throws Exception {
         LinkedHashMap<String, Variable> variables = new LinkedHashMap<>();
         Expression expression  = new Expression(variables, "x + 1");
-        Variable x = new DerivedVariable("x", expression);
+        Variable x = new ExpressedVariable("x", expression);
         variables.put(x.name(), x);
 
         assertEquals(1.0, x.evaluate());
@@ -24,7 +24,7 @@ public class VariableTest {
 
     @Test
     public void testResetVariable() throws Exception {
-        Variable x = new DerivedVariable("x", new Expression("10"));
+        Variable x = new ExpressedVariable("x", new Expression("10"));
 
         x.evaluate();
 
@@ -40,13 +40,13 @@ public class VariableTest {
 
     @Test()
     public void testConditionalVariable() throws Exception {
-        Expression condition = new Expression("2 == 1");
+        Condition condition = new Condition(new Expression("2 == 1"));
 
-        Variable x = new ConditionalVariable(new DerivedVariable("x", new Expression("10")), condition);
+        Variable x = new ConditionalVariable(new ExpressedVariable("x", new Expression("10")), condition);
         assertEquals(x.evaluate(), 0.0);
 
-        condition = new Expression("2 == 2");
-        x = new ConditionalVariable(new DerivedVariable("x", new Expression("10")), condition);
+        condition = new Condition(new Expression("2 == 2"));
+        x = new ConditionalVariable(new ExpressedVariable("x", new Expression("10")), condition);
 
         assertEquals(x.evaluate(), 10.0);
     }

@@ -14,4 +14,8 @@ public class Condition {
     public boolean isMet() throws BadExpressionException {
         return expression.toBoolean();
     }
+
+    public boolean isNotMet() throws BadExpressionException {
+        return !isMet();
+    }
 }

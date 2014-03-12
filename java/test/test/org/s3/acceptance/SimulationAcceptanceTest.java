@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.s3.Simulation;
 import org.s3.SimulationResult;
 import org.s3.SimulationRunner;
-import org.s3.expression.Expression;
+import org.s3.variable.Condition;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -45,7 +45,7 @@ public class SimulationAcceptanceTest {
             .withVariable("x").uniform(1,6)
             .sample("x");
 
-        Expression untilAnEven = simulator.makeExpression("x % 2 == 0");
+        Condition untilAnEven = simulator.makeCondition("x % 2 == 0");
         SimulationResult simulationResult = new SimulationRunner().run(simulator, untilAnEven, 10000);
 
         double sampleMean = simulationResult.sampleMean();

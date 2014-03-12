@@ -1,13 +1,11 @@
 package org.s3.variable;
 
-import org.s3.expression.Expression;
-
 public class ConditionalVariable implements Variable {
 
     private final Variable variable;
-    private final Expression condition;
+    private final Condition condition;
 
-    public ConditionalVariable(Variable variable, Expression condition) {
+    public ConditionalVariable(Variable variable, Condition condition) {
         this.variable = variable;
         this.condition = condition;
     }
@@ -19,7 +17,7 @@ public class ConditionalVariable implements Variable {
 
     @Override
     public double evaluate() throws Exception {
-        if(condition.toBoolean()) {
+        if(condition.isMet()) {
             variable.evaluate();
         }
         return currentValue();

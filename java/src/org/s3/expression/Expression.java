@@ -38,7 +38,7 @@ public class Expression {
     }
 
     private Calculable calculable() throws BadExpressionException {
-        // Lazily loading the calculable this way allows the makeExpression to refer to all variables
+        // Lazily loading the calculable this way allows this Expression to refer to all variables
         // in the simulation, even if they were declared later
         if (calculable == null) {
             try {

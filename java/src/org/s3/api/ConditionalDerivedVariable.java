@@ -2,7 +2,7 @@ package org.s3.api;
 
 import org.s3.Simulation;
 import org.s3.expression.Expression;
-import org.s3.variable.DerivedVariable;
+import org.s3.variable.ExpressedVariable;
 import org.s3.variable.Variable;
 
 public class ConditionalDerivedVariable extends ConditionalVariable {
@@ -18,6 +18,6 @@ public class ConditionalDerivedVariable extends ConditionalVariable {
 
     @Override
     Variable createVariable() {
-        return new DerivedVariable(name, expression);
+        return new ExpressedVariable(name, expression);
     }
 }

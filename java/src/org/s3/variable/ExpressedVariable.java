@@ -3,14 +3,14 @@ package org.s3.variable;
 import org.s3.expression.Expression;
 import org.s3.expression.BadExpressionException;
 
-public class DerivedVariable implements Variable<BadExpressionException> {
+public class ExpressedVariable implements Variable<BadExpressionException> {
 
     private final String name;
     private final Expression expression;
 
     private double currentValue;
 
-    public DerivedVariable(String name, Expression expression) {
+    public ExpressedVariable(String name, Expression expression) {
         this.name = name;
         this.expression = expression;
     }

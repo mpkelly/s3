@@ -1,6 +1,6 @@
 package org.s3;
 
-import org.s3.expression.Expression;
+import org.s3.variable.Condition;
 
 public class SimulationRunner {
 
@@ -16,13 +16,13 @@ public class SimulationRunner {
         return new SimulationResult(samples);
     }
 
-    public SimulationResult run(Simulation simulation, Expression expression, int iterations) throws Exception {
+    public SimulationResult run(Simulation simulation, Condition condition, int iterations) throws Exception {
         double [][][] samples = new double [iterations][1][1];
 
         for (int i = 0; i < iterations; i++) {
             int count = 1;
             simulation.run();
-            while(!expression.toBoolean()) {
+            while(condition.isNotMet()) {
                 count++;
                 simulation.run();
             }
