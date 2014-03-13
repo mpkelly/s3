@@ -4,13 +4,13 @@ import org.s3.variable.ChoiceVariable;
 import org.s3.variable.Choices;
 import org.s3.variable.Variable;
 
-public class SimulationAndConditional extends Simulation implements SimulationAndConditionalBuilder<ChoiceBuilder> {
+public class SimulationAndWhen extends Simulation implements SimulationAndWhenClause<ThenStatement> {
 
     private final String name;
     private final Choices choices;
     private final org.s3.Simulation simulation;
 
-    public SimulationAndConditional(String name, Choices choices, org.s3.Simulation simulation) {
+    public SimulationAndWhen(String name, Choices choices, org.s3.Simulation simulation) {
         super(simulation);
         this.name = name;
         this.choices = choices;
@@ -23,7 +23,7 @@ public class SimulationAndConditional extends Simulation implements SimulationAn
     }
 
     @Override
-    public ChoiceBuilder when(String condition) {
-        return new Choice(name, simulation, simulation.makeCondition(condition), choices);
+    public ThenStatement when(String condition) {
+        return new Then(name, simulation, simulation.makeCondition(condition), choices);
     }
 }

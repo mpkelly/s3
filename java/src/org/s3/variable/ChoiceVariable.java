@@ -2,8 +2,6 @@ package org.s3.variable;
 
 import org.s3.expression.BadExpressionException;
 
-import static org.s3.variable.Choices.*;
-
 public class ChoiceVariable implements Variable<BadExpressionException> {
 
     private final Choices choices;
@@ -23,7 +21,7 @@ public class ChoiceVariable implements Variable<BadExpressionException> {
 
     @Override
     public double evaluate() throws BadExpressionException {
-        for(Choice choice : choices) {
+        for(Choices.Choice choice : choices) {
             if (choice.condition.isMet()) {
                 currentValue = choice.expression.toDouble();
                 break;

@@ -27,7 +27,6 @@ public class VariableTest {
         Variable x = new ExpressedVariable("x", new Expression("10"));
 
         x.evaluate();
-
         assertEquals(10.0, x.currentValue());
         x.reset();
         assertEquals(0.0, x.currentValue());

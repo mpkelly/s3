@@ -2,7 +2,7 @@ package org.s3;
 
 public class SimpleBusinessForecast {
 
-    // Based on examples used at:
+    // Based on example used at:
     // http://www.solver.com/monte-carlo-simulation-tutorial
 
     public static void main(String[] args) throws Exception {
@@ -20,8 +20,8 @@ public class SimpleBusinessForecast {
             .withConstant("FixedCosts", 120000)
             .sample("Sales * (SellingPrice - UnitCost) - FixedCosts");
 
-        final SimulationResult result = new SimulationRunner().run(simulation, 20, 100000);
+        final SimulationResult result = new SimulationRunner().run(simulation, 30, 100000);
 
-        System.out.println(result.sampleMean());
+        System.out.println("Most likely net profit: £" + result.sampleMean());
     }
 }

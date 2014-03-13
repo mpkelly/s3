@@ -23,6 +23,6 @@ public class SimulationResult {
     public double[] last() {
         int iterations = samples.length;
         int sampleSize = samples[0].length;
-        return samples[iterations - 1][sampleSize -1];
+        return samples[iterations - 1][sampleSize - 1];
     }
 }

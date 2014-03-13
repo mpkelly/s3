@@ -8,6 +8,17 @@ import java.util.List;
 
 public class Choices implements Iterable<Choices.Choice> {
 
+    static class Choice {
+
+        final Condition condition;
+        final Expression expression;
+
+        public Choice(Condition condition, Expression expression) {
+            this.condition = condition;
+            this.expression = expression;
+        }
+    }
+
     private final List<Choice> choices;
 
     public Choices() {
@@ -21,16 +32,5 @@ public class Choices implements Iterable<Choices.Choice> {
 
     public void add(Condition condition, Expression expression) {
         choices.add(new Choice(condition, expression));
-    }
-
-    public static class Choice {
-
-        final Condition condition;
-        final Expression expression;
-
-        public Choice(Condition condition, Expression expression) {
-            this.condition = condition;
-            this.expression = expression;
-        }
     }
 }

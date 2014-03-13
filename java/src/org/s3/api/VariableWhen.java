@@ -2,11 +2,11 @@ package org.s3.api;
 
 import org.s3.Simulation;
 
-public abstract class ConditionalVariable extends org.s3.api.Simulation implements SimulationAndConditionalBuilder<SimulationBuilder> {
+public abstract class VariableWhen extends org.s3.api.Simulation implements SimulationAndWhenClause<SimulationBuilder> {
 
     private final Simulation simulation;
 
-    protected ConditionalVariable(Simulation simulation) {
+    protected VariableWhen(Simulation simulation) {
         super(simulation);
         this.simulation = simulation;
     }

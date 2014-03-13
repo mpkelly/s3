@@ -5,12 +5,12 @@ import org.s3.expression.Expression;
 import org.s3.variable.ExpressedVariable;
 import org.s3.variable.Variable;
 
-public class ConditionalExpressedVariable extends ConditionalVariable {
+public class ExpressedVariableWhen extends VariableWhen {
 
     private final String name;
     private final Expression expression;
 
-    public ConditionalExpressedVariable(String name, Simulation simulation, Expression expression) {
+    public ExpressedVariableWhen(String name, Simulation simulation, Expression expression) {
         super(simulation);
         this.name = name;
         this.expression = expression;

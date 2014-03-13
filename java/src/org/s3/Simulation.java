@@ -21,17 +21,17 @@ public class Simulation implements SimulationBuilder {
         this.variables = new LinkedHashMap<>();
     }
 
-    public Simulation withVariable(Variable variable) {
-        variables.put(variable.name(), variable);
-        return this;
-    }
-
     public Expression makeExpression(String expression) {
         return new Expression(variables, expression);
     }
 
     public Condition makeCondition(String expression) {
         return new Condition(makeExpression(expression));
+    }
+
+    public Simulation withVariable(Variable variable) {
+        variables.put(variable.name(), variable);
+        return this;
     }
 
     @Override
@@ -46,8 +46,8 @@ public class Simulation implements SimulationBuilder {
     }
 
     @Override
-    public Simulation sample(String... expressions) {
-        this.sampleExpressions =  new Expression[expressions.length];
+    public Simulation sample(String ... expressions) {
+        sampleExpressions =  new Expression[expressions.length];
         for (int i = 0; i < expressions.length; i++) {
             sampleExpressions[i] = makeExpression(expressions[i]);
         }

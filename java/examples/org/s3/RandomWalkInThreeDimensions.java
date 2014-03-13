@@ -20,6 +20,6 @@ public class RandomWalkInThreeDimensions {
 
         double [] finalPosition = result.last();
 
-        System.out.println(finalPosition[0] + "|" + finalPosition[1] + "|"  + finalPosition[2]);
+        System.out.println("[" + finalPosition[0] + "," + finalPosition[1] + ","  + finalPosition[2] + "]");
     }
 }

@@ -4,14 +4,14 @@ import org.s3.Simulation;
 import org.s3.variable.Choices;
 import org.s3.variable.Condition;
 
-public class Choice implements ChoiceBuilder {
+public class Then implements ThenStatement {
 
     private final String name;
     private final Simulation simulation;
     private final Condition condition;
     private final Choices choices;
 
-    public Choice(String name, Simulation simulation, Condition condition, Choices choices) {
+    public Then(String name, Simulation simulation, Condition condition, Choices choices) {
         this.name = name;
         this.simulation = simulation;
         this.condition = condition;
@@ -19,8 +19,8 @@ public class Choice implements ChoiceBuilder {
     }
 
     @Override
-    public SimulationAndConditionalBuilder<ChoiceBuilder> then(String expression) {
+    public SimulationAndWhenClause<ThenStatement> then(String expression) {
         choices.add(condition, simulation.makeExpression(expression));
-        return new SimulationAndConditional(name, choices, simulation);
+        return new SimulationAndWhen(name, choices, simulation);
     }
 }
