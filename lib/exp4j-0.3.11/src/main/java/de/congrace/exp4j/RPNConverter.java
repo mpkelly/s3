@@ -22,7 +22,7 @@ abstract class RPNConverter {
 			if (resultBuilder.length() == whitespaceCount){
 				expressionStart = true;
 			}
-			// check if last char in the result is an operator
+			// check if lastSample char in the result is an operator
 			if (resultBuilder.length() > whitespaceCount){
 				if (isOperatorCharacter(resultBuilder.charAt(resultBuilder.length() - 1 - whitespaceCount), operators)){
 					afterOperator = true;
