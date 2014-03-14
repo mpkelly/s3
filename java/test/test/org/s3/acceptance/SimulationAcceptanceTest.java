@@ -20,9 +20,9 @@ public class SimulationAcceptanceTest {
 
         SimulationResult simulationResult = new SimulationRunner().run(simulator, 20, 10000);
 
-        double sampleMean = simulationResult.mean();
+        double mean = simulationResult.mean();
 
-        assertEquals("single die throws sample mean", sampleMean, 3.5, DELTA);
+        assertEquals("single die throws sample mean", mean, 3.5, DELTA);
      }
 
     @Test(timeout = 1000)
@@ -34,9 +34,9 @@ public class SimulationAcceptanceTest {
 
         SimulationResult simulationResult = new SimulationRunner().run(simulator, 20, 10000);
 
-        double sampleMean = simulationResult.mean();
+        double mean = simulationResult.mean();
 
-        assertEquals("two dice throws sample mean", sampleMean, 7, DELTA);
+        assertEquals("two dice throws sample mean", mean, 7, DELTA);
     }
 
     @Test(timeout = 2000)
@@ -48,8 +48,8 @@ public class SimulationAcceptanceTest {
         Condition untilAnEven = simulator.makeCondition("x % 2 == 0");
         SimulationResult simulationResult = new SimulationRunner().run(simulator, untilAnEven, 10000);
 
-        double sampleMean = simulationResult.mean();
+        double mean = simulationResult.mean();
 
-        assertEquals("average throws sample mean", sampleMean, 2, DELTA);
+        assertEquals("average throws sample mean", mean, 2, DELTA);
     }
 }
