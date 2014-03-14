@@ -6,7 +6,7 @@ public final class Preconditions {
     private Preconditions(){}
 
     public static void checkState(boolean expression, String message, Object ... args) throws IllegalStateException {
-        if(expression) {
+        if(!expression) {
             throw new IllegalStateException(format(message, args));
         }
     }

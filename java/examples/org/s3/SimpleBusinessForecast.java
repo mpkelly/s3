@@ -22,12 +22,11 @@ public class SimpleBusinessForecast {
 
         final SimulationResult result = new SimulationRunner().run(simulation, 30, 100000);
 
-        System.out.println("Most likely net profit: £" + result.mean());
-
         final double[][] range = result.range();
 
-        System.out.println("Worst case net profit: £" + range[0]);
-        System.out.println("Best case net profit: £" + range[1]);
+        System.out.println("Most likely net profit: £" + result.mean());
+        System.out.println("Worst case net profit: £" + range[0][0]);
+        System.out.println("Best case net profit: £" + range[1][0]);
 
     }
 }
