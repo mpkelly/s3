@@ -23,7 +23,7 @@ public class SimulationResultTest {
     }
 
     @Test
-    public void testSampleMean() throws Exception {
+    public void testMean() throws Exception {
         double sampleMean = new SimulationResult(multipleSamples).mean();
         assertEquals("sample mean multiple", 4.0, sampleMean);
 
