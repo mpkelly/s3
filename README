@@ -1,1 +1,2 @@
-This file was created by IntelliJ IDEA 12.1.3 for binding GitHub repository
+Plan to use this in an Android app at some point. It is not really intended for use in a headless application (it takes string expressions
+which will have be entered into a UI). 
